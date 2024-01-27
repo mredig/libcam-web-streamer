@@ -19,7 +19,12 @@ COPY trusted.gpg /etc/apt/trusted.gpg.d/raspi.gpg
 RUN apt update
 RUN apt install -y \
 	libcamera-tools \
-	libcamera-apps-lite
+	libcamera-apps-lite \
+	gstreamer1.0-plugins-bad \
+	gstreamer1.0-plugins-base \
+	gstreamer1.0-plugins-ugly \
+	gstreamer1.0-tools \
+	gstreamer1.0-libcamera
 
 WORKDIR /
 COPY entrypoint.sh .
@@ -28,5 +33,4 @@ COPY entrypoint.sh .
 
 RUN echo "libcamera-hello" >> /root/.bash_history
 
-# ENTRYPOINT ["/bin/bash"]
 ENTRYPOINT ["/entrypoint.sh"]
